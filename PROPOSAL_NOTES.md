@@ -82,6 +82,9 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 
 **Closest paper: Alesina & Tabellini (1990)** — must clearly state how mine differs.
 
+**Overlap warning (2026-10-21): Battaglini & Coate (2008) already partly answers "why no zero-tax endowment".** In their political equilibrium (legislative bargaining, pork for minimum winning coalitions), debt settles at a level above the planner's and the asset-accumulation path is not followed. Their mechanism is *within-period* (common pool / pork makes extra revenue go to pork instead of saving). Mine is *between-period* (turnover + raiding of the stock of assets, φ). Must say this explicitly in the lit review and the intro. Re-read BC (2008) Sections on the planner vs political equilibrium to confirm.
+- No 2025 Battaglini paper on debt found (searched 2026-10-21; his site was not reachable from the session). Recent items found: tax evasion/tax professionals (JEEA, accepted 2025), ML tax auditing (J. Econometrics 2025), volunteer's dilemma (JPubE 2025), "Bargaining over taxes and entitlements" (IER, 2023). Ask the student for the exact title if they meant a specific one.
+
 ### Other ideas considered (backups)
 - Time inconsistency: a government holding assets is tempted to change policy (Lecture 11, Lucas–Stokey).
 - Credit-constrained heterogeneous households → positive optimal debt (Aiyagari & McGrattan 1998).
