@@ -87,6 +87,25 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 - Credit-constrained heterogeneous households → positive optimal debt (Aiyagari & McGrattan 1998).
 - General equilibrium: asset accumulation pushes down r in a closed economy.
 
+## Model build: version 1 (two-period, started 2026-10-21)
+
+**Simplifications:** 2 periods; spending fixed at G each period (no g choice yet); start with zero debt; period-1 government is benevolent; it survives with prob q, and if it loses, the successor takes share φ of the fund (lost to citizens). Debt cannot be "raided", so φ applies only to positive assets.
+
+**Blocks:**
+- Household: max (1−τ)wl − h(l) → l(τ) = (w(1−τ))^ε; revenue R(τ) = τ·w·l(τ).
+- Cost of raising one more rupee: λ(τ) = MCPF = (1−τ)/(1−τ(1+ε)), rising in τ → reason to smooth taxes.
+- Budgets: R(τ₁) = G + s; R(τ₂) = G − (1+r)s if the incumbent survives, G − (1−φ)(1+r)s if not.
+- Optimal saving (s > 0): λ(τ₁) = β(1+r)[q·λ(τ₂^stay) + (1−q)(1−φ)·λ(τ₂^lose)].
+
+**Threshold (evaluate at s = 0, where τ₁ = τ₂):** saves iff (1−q)·φ < κ, where κ = 1 − 1/(β(1+r)).
+- (1−q)φ = expected share of the fund lost; κ = how much more patient the planner is than the market.
+- Lower r → smaller κ → harder to save. ε does **not** enter the threshold (it only changes *how much* is saved).
+- Numbers: β = 0.96, r = 5% → κ ≈ 0.8%, so even a tiny expected loss stops saving. Checked numerically (Claude, scratch script): matches.
+
+**Logic check: version 1 gives "no saving", not "debt".** Above the threshold the government sits at s = 0 (balanced budget), because borrowing still costs the full (1+r). To explain *debt* (India), version 2 needs one more ingredient, e.g. successor values spending differently (Alesina & Tabellini 1990) or β(1+r) < 1. Sharpens the contrast: A&T explain debt; this model explains the absence of assets.
+
+**Next:** (1) student re-derives the Euler condition and threshold in own words; (2) pick the version-2 ingredient; (3) add the choice of g; (4) infinite horizon / Markov.
+
 ## Timeline
 
 | By | Task | Done |
