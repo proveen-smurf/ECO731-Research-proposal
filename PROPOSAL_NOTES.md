@@ -164,6 +164,16 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 
 **Roadblocks (for the proposal):** (1) existence/uniqueness of MPE (non-convergence suggests possible multiple equilibria); (2) generalised Euler not solvable in closed form → numerical; (3) kink at b = 0 from φ (value function not smooth); (4) need shocks for a stationary distribution; (5) endogenous q (probabilistic voting) left for later.
 
+## Candidate extensions (2026-10-22, not yet chosen)
+
+1. **Spending shocks (BC 2008 style)**: needed to fix the β(1+r) > 1 logic issue. Expected: φ cuts precautionary saving → taxes more volatile.
+2. **Resource windfall (oil, Norway/Gulf)**: temporary income boost. Expected: high φ → windfall spent at once; low φ → saved in a fund. Links to Tornell & Lane (1999) voracity effect.
+3. **Fiscal rule vs fund protection (FRBM Act, Lecture 19)**: debt ceiling vs low φ. Expected: ceiling stops borrowing but doesn't create saving; protection does the opposite → complements. India angle.
+4. **Choosing φ (who protects the fund?)**: constitutional stage. Expected (to derive): behind a veil of ignorance both parties want φ = 0, but an incumbent may not adopt it alone.
+5. **Endogenous q (probabilistic voting, Lecture 20)**: saving raises taxes today → lowers re-election chance → less saving. Harder.
+
+Recommended: 1 (must) + 2 or 3 (headline result). Leave 4 and 5 as "future work".
+
 ## Timeline
 
 | By | Task | Done |
