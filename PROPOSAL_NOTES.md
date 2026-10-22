@@ -109,6 +109,34 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 
 **Next:** (1) student re-derives the Euler condition and threshold in own words; (2) pick the version-2 ingredient; (3) add the choice of g; (4) infinite horizon / Markov.
 
+## Model build: version 2 (disagreeing successor, 2026-10-22)
+
+**Change from v1:** two parties, A and B, each values only its own public good (Alesina–Tabellini style); both care about tax distortions. Government now chooses g each period: A·v′(g) = λ(τ). A governs in period 1; in period 2, A with prob q, B with prob 1−q. If B wins and there are assets, B takes share φ first (as before). Same A, v, ε for both parties (symmetry), so at b = 0 all tax rates are equal.
+
+**Key new object, s (share paid by taxes):** when the period-2 government has to repay one more rupee of debt, it covers a share s by raising taxes and 1−s by cutting its own spending. 0 < s < 1. Define **d = 1 − s** (polarisation / disagreement: the share of the debt burden that lands on spending A doesn't value).
+- From B's FOC: s = 1 / (1 + λ′(τ) / (−A·v″(g)·R′(τ))).
+
+**Euler (A in period 1):** λ(τ₁) = β(1+r)[q·λ(τ₂^A) + (1−q)·s·λ(τ₂^B)], with (1−φ) on the B-term when b < 0.
+
+**Three regimes (evaluated at b = 0), κ = 1 − 1/(β(1+r)):**
+- **Borrow** (India) iff (1−q)·d > κ
+- **Save** (Norway) iff (1−q)·[d + φ(1−d)] < κ
+- **Balanced budget** in between. The band exists only because φ > 0, and it widens with φ.
+- v1 is the special case d = 0.
+
+**Results to state:**
+- Turnover (low q) and polarisation (high d) → debt. Raiding risk (φ) → no assets, but φ alone cannot create debt.
+- Disagreement alone (φ = 0) already lowers the value of saving: the successor spends part of the fund on its own good.
+- φ is an institutional/legal parameter (can be legislated); d and q are political → the policy lever is φ.
+- ε now matters: higher ε → λ rises faster → s smaller → d larger → more debt. (Numerically: d ≈ 0.014, 0.028, 0.058 for ε = 0.25, 0.5, 1 with v = log, A = 0.05.) Sign is clear in this example; check whether it holds generally.
+- β(1+r) = 1 (κ = 0): any q < 1 gives debt (pure A&T result).
+
+**Checked numerically** (Claude, scratch script, β = 0.96, r = 5%, v = log): predicted regime matched the grid-search optimum in all 17 cases tried.
+
+**Contrast with literature:** A&T (1990) = d channel (debt). BC (2008) = within-period pork. New piece = φ (raiding of the stock) and the balanced-budget band it creates; plus combining both to get all three regimes in one model.
+
+**Next:** student re-derives s and the three conditions; draw the regime map (q on x-axis, φ on y-axis); then (c) infinite horizon / Markov.
+
 ## Timeline
 
 | By | Task | Done |
