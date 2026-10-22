@@ -137,6 +137,33 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 
 **Next:** student re-derives s and the three conditions; draw the regime map (q on x-axis, φ on y-axis); then (c) infinite horizon / Markov.
 
+## Model build: version 3 (infinite horizon, Markov, 2026-10-22)
+
+**State:** debt b (negative = assets). Parties symmetric, so we only need two value functions:
+- V(b) = value to the party **in power** facing debt b.
+- W(b) = value to the party **out of power** when debt is b.
+
+**Timing each period:** election (incumbent stays w.p. q; on turnover, assets shrink to (1−φ)·b) → party in power picks τ, g, b′ → budget g + (1+r)b = R(τ) + b′.
+
+**Bellman equations:** T(b) = (1−φ)b if b < 0, else b.
+- V(b) = max over (τ, g, b′) of U(τ) + A·v(g) + β[q·V(b′) + (1−q)·W(T(b′))]
+- W(b) = U(τ*(b)) + β[q·W(b*(b)) + (1−q)·V(T(b*(b)))], using the incumbent's choices τ*, b*.
+
+**Markov-perfect equilibrium:** a policy rule b*(b) such that, when everyone expects all future governments to use it, today's government finds it optimal to use it too.
+
+**Generalised Euler equation (idea):** λ(τ_t) = β(1+r)·E[λ(τ_{t+1}) × (share of repayment paid through taxes, with (1−φ) after turnover)], plus a **strategic term**: how today's b′ changes what tomorrow's government will do. The strategic term is what makes it hard to solve analytically.
+
+**Solution method:** value-function iteration on a grid (code/mpe_solver.py, exploratory, written by Claude): guess V and W → incumbent's best b′ for each b → update V and W → repeat.
+
+**What the numbers showed (A = 0.15, ε = 0.5, r = 5%):**
+- β(1+r) > 1 and φ > 0: long-run debt stuck at **exactly zero** (balanced budget) → the v1/v2 "band" survives in infinite horizon. Clearest result.
+- β(1+r) = 1, φ = 0: q = 1 stays at b = 0 (Barro); q < 1 gives positive debt (A&T). Sensible.
+- **Problems:** several cases did not converge (cycling); some cases jump to the debt limit; with β(1+r) > 1 and q = 1 the planner saves **without limit** (hits the grid edge).
+
+**Logic issue found:** with β(1+r) > 1 and no uncertainty, the planner never stops saving (once taxes hit zero, extra assets fund ever more g). The "accumulate until interest pays for g, then stop" planner comes from BC (2008): β(1+r) = 1 **plus spending shocks** (precautionary saving). → For the infinite-horizon model, use BC's set-up (β(1+r) = 1 + shocks to A). Then φ works by **cutting the value of precautionary saving**. Keep the two-period κ > 0 version as the simple analytical illustration. Ask professor whether this is fine.
+
+**Roadblocks (for the proposal):** (1) existence/uniqueness of MPE (non-convergence suggests possible multiple equilibria); (2) generalised Euler not solvable in closed form → numerical; (3) kink at b = 0 from φ (value function not smooth); (4) need shocks for a stationary distribution; (5) endogenous q (probabilistic voting) left for later.
+
 ## Timeline
 
 | By | Task | Done |
