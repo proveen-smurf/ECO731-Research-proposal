@@ -1,6 +1,6 @@
 # ECO731 Research Proposal — Working Notes
 
-_Last updated: 2026-10-09. Summary of planning sessions with Claude._
+_Last updated: 2026-10-23. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch)._
 
 ## Assignment (from FCH + instructor email, both PDFs in this repo)
 
@@ -79,16 +79,47 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 | Benchmarks | Barro (1979), Lucas & Stokey (1983), Aiyagari et al. (2002) | add politics to the planner |
 | Political economy of debt | Persson & Svensson (1989), Alesina & Tabellini (1990), Battaglini & Coate (2008) | focus on why *assets* aren't built up; role of φ |
 | Common pool / fiscal rules | Tornell & Lane (1999), Halac & Yared (2014), Azzimonti (2011) | not about the zero-tax endowment path |
+| Indian states / dynamic political economy | Khemani (2004), Battaglini (2014), Battaglini (2026) | Khemani: electoral cycles in Indian states (verify); Battaglini 2014: endogenous turnover via probabilistic voting; Battaglini 2026: complex dynamics under alternation. None has raiding of the asset stock (φ) |
 
 **Closest paper: Alesina & Tabellini (1990)** — must clearly state how mine differs.
 
 **Overlap warning (2026-10-21): Battaglini & Coate (2008) already partly answers "why no zero-tax endowment".** In their political equilibrium (legislative bargaining, pork for minimum winning coalitions), debt settles at a level above the planner's and the asset-accumulation path is not followed. Their mechanism is *within-period* (common pool / pork makes extra revenue go to pork instead of saving). Mine is *between-period* (turnover + raiding of the stock of assets, φ). Must say this explicitly in the lit review and the intro. Re-read BC (2008) Sections on the planner vs political equilibrium to confirm.
-- No 2025 Battaglini paper on debt found (searched 2026-10-21; his site was not reachable from the session). Recent items found: tax evasion/tax professionals (JEEA, accepted 2025), ML tax auditing (J. Econometrics 2025), volunteer's dilemma (JPubE 2025), "Bargaining over taxes and entitlements" (IER, 2023). Ask the student for the exact title if they meant a specific one.
+- ~~No 2025 Battaglini paper found~~ → resolved 2026-10-13: the professor sent Battaglini (2014, TE) and Battaglini (2026, TE); see "Status update" below.
 
 ### Other ideas considered (backups)
 - Time inconsistency: a government holding assets is tempted to change policy (Lecture 11, Lucas–Stokey).
 - Credit-constrained heterogeneous households → positive optimal debt (Aiyagari & McGrattan 1998).
 - General equilibrium: asset accumulation pushes down r in a closed economy.
+
+## Status update: email to professor and reply (2026-10-11 to 10-13)
+
+**Course status:** the professor **accepted the drop request on Pingala** (13 Oct). The student had already completed their credit requirements and wants to keep working with the professor on this topic. **TODO: confirm whether the 14 Nov ECO731 deadline still applies or this is now an informal project.** The professor will discuss the idea after the mid-sem break and asked the student to keep polishing it until then.
+
+**What the email (11 Oct) committed to** (fuller than the 9 Oct sketch):
+- **Setting:** Indian states. They have high debt, small Consolidated Sinking Fund (CSF) balances, a return to the Old Pension Scheme (OPS) in several states (liabilities pushed onto future governments), strong anti-incumbency, and finances that depend on relations with the Centre.
+- **Mechanism as a race:** a buffer motive (uncertain spending → save, as in BC 2008) vs a political discount (turnover q + raiding φ). Effective return (1+r)[q + (1−q)(1−φ)] < 1/β under β(1+r) = 1.
+- **Prediction:** a threshold q below which states stop saving; **the threshold rises with spending volatility**.
+- **Fungibility:** the CSF can only repay debt, but a successor can offset it by borrowing more or contributing less.
+- **Centre alignment, two-sided:** it raises re-election chances (more saving) but creates bailout expectations (less saving). The model should decide which effect dominates.
+- **Approach:** two-period threshold, then infinite-horizon MPE following BC. **Mainly theoretical**; RBI *State Finances: A Study of Budgets* and Election Commission data only as motivation (few elections, expected turnover unobservable).
+- **Closest papers named:** Alesina & Tabellini (1990), **Khemani (2004)**.
+- Wants to turn it into a full paper later (student / early-career journal).
+
+**Professor's reading (13 Oct):** forward and backward citation searches on Google Scholar starting from the two papers.
+- **Battaglini (2014, TE 9: 515–554), "A dynamic theory of electoral competition".** A dynamic probabilistic-voting model with debt as the state; platforms include public goods, transfers, the tax rate and debt; Markov equilibrium; efficiency depends on the electoral rule. → **Template for endogenous q** (extension 5) and for how turnover enters a Markov model of debt.
+- **Battaglini (2026, TE 21: 241–280), "Chaos and unpredictability with time inconsistent policy makers".** Two parties alternate in power as in A&T (1990), with a durable state variable. Planner case: unique equilibrium with monotone convergence. Political case (time inconsistency): **Markov equilibria with cycles and chaotic dynamics exist**, more so when the public good matters more; as time inconsistency → 0, the fluctuations shrink. → **Directly relevant to the version 3 non-convergence/cycling** (see check below).
+- Papers cited there to follow up (verify): Battaglini & Coate (2007, durable public goods), Yared (2010), Klein, Krusell & Ríos-Rull (2008).
+
+### Consistency check: email vs model versions 1–3 (2026-10-23)
+
+1. **Benchmark assumption: needs fixing.** The email uses β(1+r) = 1 plus a buffer motive. Versions 1–2 get their threshold from κ = 1 − 1/(β(1+r)) > 0 with **no spending uncertainty**. At β(1+r) = 1 (κ = 0), v1 says *never save* for any φ > 0, and v2 says *always borrow* for any q < 1. So **the email's main prediction (threshold q, rising with volatility) is not derived in any version yet.** It needs spending shocks, which is extension 1 and the v3 logic fix. Suggested next step: a two-period version with a shock to A in period 2 under β(1+r) = 1. Precautionary saving then requires λ to be convex in the period-2 need (check whether MCPF = (1−τ)/(1−τ(1+ε)) delivers this). The threshold compares prudence × volatility against (1−q)φ.
+2. **v3 cycling may be a result, not a bug.** Battaglini (2026) shows that A&T-type alternation with a durable state can produce cycles and chaos in Markov equilibrium. The proposal's roadblock section should cite this: non-convergence may reflect multiple or complex equilibria, not just numerical error. Also check whether φ (the kink at b = 0) increases time inconsistency.
+3. **Fungibility is not yet in the model.** In v1–v3, b is the *net* position, so a separate CSF has no bite. The email's point (offset by new borrowing) means legal protection only matters if borrowing is capped. This links neatly to **extension 3** (debt ceiling + fund protection as complements) and to a gross-vs-net asset distinction. Possibly the India-specific contribution.
+4. **Centre alignment is missing** from all versions and the extension list. Added as extension 6 below.
+5. **Khemani (2004) is missing** from the literature table. Added (verify the citation; believed to be about electoral cycles in Indian states' fiscal policy, *J. Development Economics*).
+6. **Empirics:** the email says theory only. The CSF → SDL spreads idea under "India angle" is now a backup, not the plan.
+7. **OPS:** a strong motivating anecdote for the intro (shifting liabilities to successors), not yet in the notes.
+8. **Wording:** "any turnover risk pushes the return below 1/β" holds only if φ > 0 (or d > 0 in v2). With φ = 0 and d = 0, turnover doesn't matter.
 
 ## Model build: version 1 (two-period, started 2026-10-21)
 
@@ -172,7 +203,9 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 4. **Choosing φ (who protects the fund?)**: constitutional stage. Expected (to derive): behind a veil of ignorance both parties want φ = 0, but an incumbent may not adopt it alone.
 5. **Endogenous q (probabilistic voting, Lecture 20)**: saving raises taxes today → lowers re-election chance → less saving. Harder.
 
-Recommended: 1 (must) + 2 or 3 (headline result). Leave 4 and 5 as "future work".
+6. **Centre alignment (from the email, 2026-10-11)**: an aligned state has (a) higher q (more saving) and (b) a bailout expectation, i.e. part of period-2 debt is covered by the Centre, which lowers the effective cost of borrowing (less saving / more debt). In the model this is q(aligned) > q(not) plus a bailout share θ on debt. The prediction comes from comparing the two effects on the threshold.
+
+Recommended: 1 (must) + 2 or 3 (headline result). Leave 4 and 5 as "future work". 3 now has extra support from the CSF fungibility point; 6 is the India-specific angle from the email.
 
 ## Timeline
 
