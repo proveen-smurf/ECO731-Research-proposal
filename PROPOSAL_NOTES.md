@@ -1,6 +1,6 @@
 # ECO731 Research Proposal — Working Notes
 
-_Last updated: 2026-10-23. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch)._
+_Last updated: 2026-10-24. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; σ-threshold sign fix 2026-10-24)._
 
 ## Assignment (from FCH + instructor email, both PDFs in this repo)
 
@@ -98,7 +98,7 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 **What the email (11 Oct) committed to** (fuller than the 9 Oct sketch):
 - **Setting:** Indian states. They have high debt, small Consolidated Sinking Fund (CSF) balances, a return to the Old Pension Scheme (OPS) in several states (liabilities pushed onto future governments), strong anti-incumbency, and finances that depend on relations with the Centre.
 - **Mechanism as a race:** a buffer motive (uncertain spending → save, as in BC 2008) vs a political discount (turnover q + raiding φ). Effective return (1+r)[q + (1−q)(1−φ)] < 1/β under β(1+r) = 1.
-- **Prediction:** a threshold q below which states stop saving; **the threshold rises with spending volatility**.
+- **Prediction:** a threshold q below which states stop saving; **the threshold rises with spending volatility**. ⚠️ **Sign wrong as worded (checked 2026-10-24):** the threshold q\* *falls* with volatility σ; equivalently, the tolerable turnover risk (1−q) *rises* with σ. See check 9 below.
 - **Fungibility:** the CSF can only repay debt, but a successor can offset it by borrowing more or contributing less.
 - **Centre alignment, two-sided:** it raises re-election chances (more saving) but creates bailout expectations (less saving). The model should decide which effect dominates.
 - **Approach:** two-period threshold, then infinite-horizon MPE following BC. **Mainly theoretical**; RBI *State Finances: A Study of Budgets* and Election Commission data only as motivation (few elections, expected turnover unobservable).
@@ -120,6 +120,22 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 6. **Empirics:** the email says theory only. The CSF → SDL spreads idea under "India angle" is now a backup, not the plan.
 7. **OPS:** a strong motivating anecdote for the intro (shifting liabilities to successors), not yet in the notes.
 8. **Wording:** "any turnover risk pushes the return below 1/β" holds only if φ > 0 (or d > 0 in v2). With φ = 0 and d = 0, turnover doesn't matter.
+9. **Volatility threshold: sign fix (2026-10-24).** Let σ be the spread of the period-2 spending need (e.g. need = G ± σ with equal probability). This is the natural name for the volatility in extension 1. Two periods, β(1+r) = 1, v1 set-up (no disagreeing successor), evaluated at b = 0:
+   - Precautionary premium P(σ) = E[λ(τ₂)]/λ(τ₁) − 1 ≈ ½(λ″/λ)σ². It is > 0 iff λ is convex in the spending need.
+   - **Convexity confirmed numerically:** with MCPF = (1−τ)/(1−τ(1+ε)), λ is convex in the required revenue for ε = 0.25, 0.5, 1 (Claude, quick script). This resolves the convexity TODO in check 1.
+   - Saves iff (1−q)φ < P/(1+P) → **q\* = 1 − P/((1+P)φ), decreasing in σ.** More volatility means a stronger buffer motive, so a state saves even with more turnover risk.
+   - Correct wording for the proposal: "the turnover risk a state can tolerate and still save rises with spending volatility" (not "the threshold q rises").
+   - Numbers (need 0.1 ± σ, φ = 0.5):
+
+     | ε | σ = 0 | σ = 0.02 | σ = 0.04 |
+     |---|---|---|---|
+     | 0.25 | q\* = 1.000 | 1.000 | 0.998 |
+     | 0.5 | 1.000 | 0.998 | 0.993 |
+     | 1.0 | 1.000 | 0.992 | 0.969 |
+
+   - **The effect is small:** the buffer motive is weak, so even modest raiding risk kills saving. This supports the India story. ε now matters for the threshold (higher ε → larger P → lower q\*), unlike in v1.
+   - TODO: student re-derives this; redo it with the v2 disagreeing successor (d > 0).
+10. **Notation clashes to fix before writing up:** s = saving (v1) vs share of repayment paid by taxes (v2); A = value of the public good vs party A. Suggest a (assets) for v1 and parties L/R. σ is free to use for volatility. In Battaglini (2014), σ is the ideological bias of districts, which is relevant only for endogenous q (extension 5).
 
 ## Model build: version 1 (two-period, started 2026-10-21)
 
