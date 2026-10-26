@@ -1,6 +1,6 @@
 # ECO731 Research Proposal — Working Notes
 
-_Last updated: 2026-10-23. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch)._
+_Last updated: 2026-10-26. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; version 4 planned; version 5 (fungibility) proposed)._
 
 ## Assignment (from FCH + instructor email, both PDFs in this repo)
 
@@ -112,9 +112,9 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 
 ### Consistency check: email vs model versions 1–3 (2026-10-23)
 
-1. **Benchmark assumption: needs fixing.** The email uses β(1+r) = 1 plus a buffer motive. Versions 1–2 get their threshold from κ = 1 − 1/(β(1+r)) > 0 with **no spending uncertainty**. At β(1+r) = 1 (κ = 0), v1 says *never save* for any φ > 0, and v2 says *always borrow* for any q < 1. So **the email's main prediction (threshold q, rising with volatility) is not derived in any version yet.** It needs spending shocks, which is extension 1 and the v3 logic fix. Suggested next step: a two-period version with a shock to A in period 2 under β(1+r) = 1. Precautionary saving then requires λ to be convex in the period-2 need (check whether MCPF = (1−τ)/(1−τ(1+ε)) delivers this). The threshold compares prudence × volatility against (1−q)φ.
+1. **Benchmark assumption: needs fixing (being addressed by version 4, planned 2026-10-24).** The email uses β(1+r) = 1 plus a buffer motive. Versions 1–2 get their threshold from κ = 1 − 1/(β(1+r)) > 0 with **no spending uncertainty**. At β(1+r) = 1 (κ = 0), v1 says *never save* for any φ > 0, and v2 says *always borrow* for any q < 1. So **the email's main prediction (threshold q, rising with volatility) is not derived in any version yet.** It needs spending shocks, which is extension 1 and the v3 logic fix. Suggested next step: a two-period version with a shock to A in period 2 under β(1+r) = 1. Precautionary saving then requires λ to be convex in the period-2 need (check whether MCPF = (1−τ)/(1−τ(1+ε)) delivers this). The threshold compares prudence × volatility against (1−q)φ.
 2. **v3 cycling may be a result, not a bug.** Battaglini (2026) shows that A&T-type alternation with a durable state can produce cycles and chaos in Markov equilibrium. The proposal's roadblock section should cite this: non-convergence may reflect multiple or complex equilibria, not just numerical error. Also check whether φ (the kink at b = 0) increases time inconsistency.
-3. **Fungibility is not yet in the model.** In v1–v3, b is the *net* position, so a separate CSF has no bite. The email's point (offset by new borrowing) means legal protection only matters if borrowing is capped. This links neatly to **extension 3** (debt ceiling + fund protection as complements) and to a gross-vs-net asset distinction. Possibly the India-specific contribution.
+3. **Fungibility is not yet in the model.** In v1–v3, b is the *net* position, so a separate CSF has no bite. The email's point (offset by new borrowing) means legal protection only matters if borrowing is capped. This links neatly to **extension 3** (debt ceiling + fund protection as complements) and to a gross-vs-net asset distinction. Possibly the India-specific contribution. **→ Version 5 (2026-10-26) models this: raid = φ·min(F, D̄); headline prediction is an all-or-nothing saving decision (to verify).**
 4. **Centre alignment is missing** from all versions and the extension list. Added as extension 6 below.
 5. **Khemani (2004) is missing** from the literature table. Added (verify the citation; believed to be about electoral cycles in Indian states' fiscal policy, *J. Development Economics*).
 6. **Empirics:** the email says theory only. The CSF → SDL spreads idea under "India angle" is now a backup, not the plan.
@@ -195,11 +195,64 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 
 **Roadblocks (for the proposal):** (1) existence/uniqueness of MPE (non-convergence suggests possible multiple equilibria); (2) generalised Euler not solvable in closed form → numerical; (3) kink at b = 0 from φ (value function not smooth); (4) need shocks for a stationary distribution; (5) endogenous q (probabilistic voting) left for later.
 
+## Model build: version 4 (two-period spending shock, β(1+r) = 1; planned 2026-10-24)
+
+**Purpose:** derive the email's main prediction (threshold q rising with volatility), fixing consistency-check item 1. Student agreed to build this next.
+
+**Changes from v1:** β(1+r) = 1 (κ = 0), so saving comes only from uncertainty. Period-1 spending = Ḡ. Period-2 required spending G₂ = Ḡ ± σ, each with prob ½ (a shock to spending need, not to A, so taxes follow directly from the budget). Period-2 timing: election + shock → raid φ of assets if the incumbent lost → taxes balance the budget.
+
+**Euler (s > 0):** λ(τ₁) = q·E[λ(τ₂^stay)] + (1−q)(1−φ)·E[λ(τ₂^lose)].
+
+**Threshold (at s = 0):** let Λ(G) = λ at the tax rate that raises exactly G. Saves iff **(1−q)·φ < P**, where **P = 1 − Λ(Ḡ)/E[Λ(G₂)]** (buffer motive ≈ prudence × variance). Equivalently **q\* = 1 − P/φ**.
+- P > 0 needs Λ convex. Argument (student to write up): λ(τ) is convex and increasing; revenue τ(1−τ)^ε is concave below the Laffer peak, so τ(G) is convex; a convex increasing function of a convex function is convex.
+- Borrowing is never optimal here (at s = 0, Λ(Ḡ) < E[Λ(G₂)]), so the government either saves or stays at s = 0. Debt needs the v2 ingredient d added back.
+
+**Predictions:**
+1. q\* rises with σ (the email's prediction, now derived).
+2. ε now matters (unlike v1): higher ε → Λ more convex → larger P → saves more readily.
+3. Lower φ lowers q\* → fund protection is the policy lever.
+
+**Quick numerical check (Claude, scratch script; w = 1, Ḡ = 0.2):** P values below. Dashes mean Ḡ + σ is past the Laffer peak.
+
+| ε | σ = 0.02 | σ = 0.05 | σ = 0.08 |
+|---|---|---|---|
+| 0.25 | 0.0005 | 0.003 | 0.008 |
+| 0.5 | 0.002 | 0.014 | 0.039 |
+| 1.0 | 0.045 | — | — |
+
+E.g. ε = 0.5, σ = 0.05, φ = 0.5 → saves only if 1 − q < about 3%. So with anti-incumbency, a raidable fund essentially never gets built.
+
+**Next:** (1) student derives the Euler equation, threshold and convexity proof on paper; (2) Claude writes `code/two_period_shock.py` (solve s directly, verify q\* = 1 − P/φ on a grid, figures: q\* vs σ for several ε, and the save / no-save regions on a (q, φ) map; needs `pip install numpy scipy matplotlib`); (3) later: add d (borrowing), then shocks to A with g chosen (BC style) for the infinite-horizon version.
+
+## Model build: version 5 (fungibility: three periods, separate fund and debt; proposed 2026-10-26, NOT yet verified)
+
+**Purpose:** model the email's fungibility point (the CSF can only repay debt, but a successor offsets it by borrowing more). Addresses consistency-check item 3 and makes extension 3 precise.
+
+**Why v1–v4 can't capture it:** they track only the net position b, so a ring-fenced fund is just negative debt. Fungibility also needs a future to borrow against, which a two-period model lacks.
+
+**Setup (three periods):**
+- t = 1: incumbent pays Ḡ and puts F ≥ 0 into a sinking fund (earns r, can **only** be used to repay debt).
+- t = 2: election + spending shock (as in v4). Government sets taxes and new borrowing B ≤ D̄ (debt ceiling, FRBM-style). A successor diverts resources to its own uses.
+- t = 3: pay Ḡ, repay B; the fund retires the debt, taxes cover the rest.
+
+**Raiding through fungibility:** the successor can't touch F directly, but borrows B, spends it, and the fund repays B in t = 3. Reduced form: **raided amount = φ · min(F, D̄)**, so the effective raid share is φ if F ≤ D̄ and φ·D̄/F if F > D̄.
+
+**Predictions (to confirm):**
+1. No ceiling (D̄ = ∞): protection useless, the fund is fully fungible (fits India: a CSF exists, but states have borrowing room).
+2. Tight ceiling (D̄ = 0): nothing raidable → planner-level saving.
+3. Protection and ceiling are **complements**: protection without a ceiling does nothing; a ceiling without protection leaves unprotected assets raidable.
+4. **Headline: the saving decision becomes all-or-nothing.** The first D̄ rupees of fund are raidable at rate φ, anything above is safe. With any headroom D̄ > 0, the first rupee saved is still raided at rate φ, so the v4 local threshold is unchanged. But a *large* fund (F > D̄) may still pay. The objective is no longer concave → compare "save nothing" with "save a lot" globally, not a local threshold. Story: a buffer fund works only if it is big relative to borrowing room.
+5. **Gross vs net ceiling:** if the ceiling is on *net* debt, each rupee in the fund adds a rupee of borrowing room → full fungibility again. If on *gross* debt, it doesn't. **TODO: verify which applies to Indian states' FRBM rules** (believed to be mostly gross outstanding liabilities, unverified).
+
+**Caveats:** min(F, D̄) is a reduced form. A fuller version has the successor choose B, trading off its own spending against t = 3 taxes. The all-or-nothing result (4) is **not yet checked numerically**.
+
+**Next (session of 2026-10-27):** confirm the setup; extend the planned solver (`code/two_period_shock.py`, not yet written) to F and D̄ and check prediction 4 by grid search; then decide whether to endogenise B.
+
 ## Candidate extensions (2026-10-22, not yet chosen)
 
 1. **Spending shocks (BC 2008 style)**: needed to fix the β(1+r) > 1 logic issue. Expected: φ cuts precautionary saving → taxes more volatile.
 2. **Resource windfall (oil, Norway/Gulf)**: temporary income boost. Expected: high φ → windfall spent at once; low φ → saved in a fund. Links to Tornell & Lane (1999) voracity effect.
-3. **Fiscal rule vs fund protection (FRBM Act, Lecture 19)**: debt ceiling vs low φ. Expected: ceiling stops borrowing but doesn't create saving; protection does the opposite → complements. India angle.
+3. **Fiscal rule vs fund protection (FRBM Act, Lecture 19)**: debt ceiling vs low φ. Expected: ceiling stops borrowing but doesn't create saving; protection does the opposite → complements. India angle. Made precise in version 5.
 4. **Choosing φ (who protects the fund?)**: constitutional stage. Expected (to derive): behind a veil of ignorance both parties want φ = 0, but an incumbent may not adopt it alone.
 5. **Endogenous q (probabilistic voting, Lecture 20)**: saving raises taxes today → lowers re-election chance → less saving. Harder.
 
