@@ -1,6 +1,6 @@
 # ECO731 Research Proposal — Working Notes
 
-_Last updated: 2026-10-27. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; σ-threshold sign fix 2026-10-24; version 4 planned; version 5 (fungibility) proposed)._
+_Last updated: 2026-10-27. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; σ-threshold sign fix 2026-10-24; version 4 planned; version 5 (fungibility) checked 2026-10-27)._
 
 ## Assignment (from FCH + instructor email, both PDFs in this repo)
 
@@ -114,7 +114,7 @@ Link: at low r the target explodes → connects to Blanchard (2019) r < g debate
 
 1. **Benchmark assumption: needs fixing (being addressed by version 4, planned 2026-10-24).** The email uses β(1+r) = 1 plus a buffer motive. Versions 1–2 get their threshold from κ = 1 − 1/(β(1+r)) > 0 with **no spending uncertainty**. At β(1+r) = 1 (κ = 0), v1 says *never save* for any φ > 0, and v2 says *always borrow* for any q < 1. So **the email's main prediction (threshold q, rising with volatility) is not derived in any version yet.** It needs spending shocks, which is extension 1 and the v3 logic fix. Suggested next step: a two-period version with a shock to A in period 2 under β(1+r) = 1. Precautionary saving then requires λ to be convex in the period-2 need (check whether MCPF = (1−τ)/(1−τ(1+ε)) delivers this). The threshold compares prudence × volatility against (1−q)φ.
 2. **v3 cycling may be a result, not a bug.** Battaglini (2026) shows that A&T-type alternation with a durable state can produce cycles and chaos in Markov equilibrium. The proposal's roadblock section should cite this: non-convergence may reflect multiple or complex equilibria, not just numerical error. Also check whether φ (the kink at b = 0) increases time inconsistency.
-3. **Fungibility is not yet in the model.** In v1–v3, b is the *net* position, so a separate CSF has no bite. The email's point (offset by new borrowing) means legal protection only matters if borrowing is capped. This links neatly to **extension 3** (debt ceiling + fund protection as complements) and to a gross-vs-net asset distinction. Possibly the India-specific contribution. **→ Version 5 (2026-10-26) models this: raid = φ·min(F, D̄); headline prediction is an all-or-nothing saving decision (to verify).**
+3. **Fungibility is not yet in the model.** In v1–v3, b is the *net* position, so a separate CSF has no bite. The email's point (offset by new borrowing) means legal protection only matters if borrowing is capped. This links neatly to **extension 3** (debt ceiling + fund protection as complements) and to a gross-vs-net asset distinction. Possibly the India-specific contribution. **→ Version 5 (2026-10-26) models this: raid = φ·min(F, D̄); all-or-nothing saving confirmed numerically 2026-10-27, but only when headroom D̄ is below the planner's (small) buffer fund.**
 4. **Centre alignment is missing** from all versions and the extension list. Added as extension 6 below.
 5. **Khemani (2004) is missing** from the literature table. Added (verify the citation; believed to be about electoral cycles in Indian states' fiscal policy, *J. Development Economics*).
 6. **Empirics:** the email says theory only. The CSF → SDL spreads idea under "India angle" is now a backup, not the plan.
@@ -240,7 +240,7 @@ E.g. ε = 0.5, σ = 0.05, φ = 0.5 → saves only if 1 − q < about 3%. So with
 
 **Next:** (1) student derives the Euler equation, threshold and convexity proof on paper; (2) Claude writes `code/two_period_shock.py` (solve s directly, verify q\* = 1 − P/φ on a grid, figures: q\* vs σ for several ε, and the save / no-save regions on a (q, φ) map; needs `pip install numpy scipy matplotlib`); (3) later: add d (borrowing), then shocks to A with g chosen (BC style) for the infinite-horizon version.
 
-## Model build: version 5 (fungibility: three periods, separate fund and debt; proposed 2026-10-26, NOT yet verified)
+## Model build: version 5 (fungibility: three periods, separate fund and debt; proposed 2026-10-26, checked numerically 2026-10-27)
 
 **Purpose:** model the email's fungibility point (the CSF can only repay debt, but a successor offsets it by borrowing more). Addresses consistency-check item 3 and makes extension 3 precise.
 
@@ -262,7 +262,14 @@ E.g. ε = 0.5, σ = 0.05, φ = 0.5 → saves only if 1 − q < about 3%. So with
 
 **Caveats:** min(F, D̄) is a reduced form. A fuller version has the successor choose B, trading off its own spending against t = 3 taxes. The all-or-nothing result (4) is **not yet checked numerically**.
 
-**Next (session of 2026-10-27):** confirm the setup; extend the planned solver (`code/two_period_shock.py`, not yet written) to F and D̄ and check prediction 4 by grid search; then decide whether to endogenise B.
+**Numerical check (2026-10-27, `code/fungibility_v5.py`; ε = 0.5, Ḡ = 0.1, σ = 0.04, r = 5%, φ = 0.5).** Model as coded: the government smooths taxes between t = 2 and t = 3; a successor borrows x = φ·min(F(1+r), D̄) and diverts it. D̄ = ∞ reproduces version 4.
+- **Prediction 4 (all-or-nothing) confirmed, but only in a narrow region.** When D̄ is below the planner's fund, the optimal fund jumps straight from 0 to the planner level as q rises, with no intermediate values. E.g. D̄ = 0.0001: F\* = 0.00073 at q = 0.995, F\* = 0 at q = 0.99.
+- **The catch: the planner's buffer fund is tiny.** It is 0.73% of Ḡ here (1.4%–5.4% for ε = 1 or σ = 0.08). Any headroom larger than that makes "save a lot" (F > D̄) never worth it, and the model collapses back to version 4.
+- **The jump point is very sensitive to D̄:** q_crit = 0.5 (bottom of the grid) at D̄ = 0, 0.987 at D̄ = 0.00005, 0.994 at 0.0001, 0.999 at 0.0004+. Even a headroom of about 7% of the planner's fund almost removes the benefit of protection.
+- **Reading:** predictions 1–3 come out strongly. Fund protection works only if borrowing headroom is close to zero relative to the buffer the state wants to hold; realistic FRBM headroom (deficits up to about 3% of GSDP) is far bigger. Prediction 4 holds qualitatively, but it is a small-region result in this calibration. Present it as a mechanism, not the headline, unless the buffer motive is larger (bigger shocks, or shocks to A with g chosen).
+- Why: the welfare gain from a precautionary fund is second order (about ½·P·F\*), while the expected raid (1−q)·φ·D̄ is first order in D̄.
+
+**Next:** (1) student re-derives the kink argument; (2) figures: welfare against F for several D̄ (shows the kink) and q_crit against D̄; (3) decide whether to endogenise B, or move the larger-buffer case (shocks to A, BC-style) to the infinite horizon; (4) verify gross vs net FRBM ceilings for Indian states.
 
 ## Candidate extensions (2026-10-22, not yet chosen)
 
