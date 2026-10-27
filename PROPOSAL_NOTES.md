@@ -286,6 +286,7 @@ Recommended: 1 (must) + 2 or 3 (headline result). Leave 4 and 5 as "future work"
 ## Progress note to professor (2026-10-27)
 
 - Drafted a progress note for the professor as a Claude Doc: https://claude.ai/artifact/SjLBBgfxD2T8hTHnMEXVi7 (private; export as PDF or share the link). It covers a literature table (11 papers, how this project differs), the common set-up, versions 1–5 with results, 5 questions for the professor, and next steps.
+- Literature section in the doc (revised 2026-10-27): a "Main overlap: pork in Battaglini & Coate (2008)" subsection (within-period pork vs between-period raiding; q = 1 saves at planner level here), then a "Results this project uses" table (BC 2008, Battaglini 2026 cycles/chaos, A&T 1990, AMSS 2002, Barro / Lucas–Stokey, Battaglini 2014, Khemani 2004). Dropped from the doc: Tornell & Lane, Azzimonti, Halac & Yared, Persson & Svensson (still in the notes table above).
 - Open comment in the doc: keep the first-person voice ("my email") or switch to neutral wording.
 - A short cover email was drafted in chat. **Student to rewrite it in their own words**, mention that Claude helped with the numerical checks, and ask whether the 14 Nov ECO731 deadline still applies.
 - **Not sent yet.**
