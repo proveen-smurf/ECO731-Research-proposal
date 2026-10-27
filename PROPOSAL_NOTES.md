@@ -285,7 +285,7 @@ Recommended: 1 (must) + 2 or 3 (headline result). Leave 4 and 5 as "future work"
 
 ## Progress note to professor (2026-10-27)
 
-- Drafted a progress note for the professor as a Claude Doc: https://claude.ai/artifact/SjLBBgfxD2T8hTHnMEXVi7 (private; export as PDF or share the link). It covers the common set-up, versions 1–5 with results, 5 questions for the professor, and next steps.
+- Drafted a progress note for the professor as a Claude Doc: https://claude.ai/artifact/SjLBBgfxD2T8hTHnMEXVi7 (private; export as PDF or share the link). It covers a literature table (11 papers, how this project differs), the common set-up, versions 1–5 with results, 5 questions for the professor, and next steps.
 - Open comment in the doc: keep the first-person voice ("my email") or switch to neutral wording.
 - A short cover email was drafted in chat. **Student to rewrite it in their own words**, mention that Claude helped with the numerical checks, and ask whether the 14 Nov ECO731 deadline still applies.
 - **Not sent yet.**
