@@ -1,6 +1,6 @@
 # ECO731 Research Proposal — Working Notes
 
-_Last updated: 2026-10-27. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; σ-threshold sign fix 2026-10-24; version 4 planned; version 5 (fungibility) checked 2026-10-27)._
+_Last updated: 2026-10-27. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; σ-threshold sign fix 2026-10-24; version 4 planned; version 5 (fungibility) checked 2026-10-27; version 6 theorems 2026-11-03)._
 
 ## Assignment (from FCH + instructor email, both PDFs in this repo)
 
@@ -270,6 +270,23 @@ E.g. ε = 0.5, σ = 0.05, φ = 0.5 → saves only if 1 − q < about 3%. So with
 - Why: the welfare gain from a precautionary fund is second order (about ½·P·F\*), while the expected raid (1−q)·φ·D̄ is first order in D̄.
 
 **Next:** (1) student re-derives the kink argument; (2) figures: welfare against F for several D̄ (shows the kink) and q_crit against D̄; (3) decide whether to endogenise B, or move the larger-buffer case (shocks to A, BC-style) to the infinite horizon; (4) verify gross vs net FRBM ceilings for Indian states.
+
+## Model build: version 6 (infinite horizon, spending shocks, raiding: theorems; 2026-11-03)
+
+Full statements, proofs and numerical checks: **`PROOFS_v6.md`**; solver: `code/raid_infinite.py` (time iteration with endogenous grid points; handles the kink at zero debt exactly).
+
+**Set-up:** β(1+r) = 1, i.i.d. spending shocks, transfers valued one-for-one (BC 2008 planner benchmark), turnover q, raiding φ of assets. Key assumption: raided resources are dissipated and all governments maximise citizens' welfare. Then:
+- **Prop 1:** the Markov equilibrium = a planner problem with a stochastic levy on assets (no strategic terms). The levy map is convex, so V is concave. V falls with (1−q) and φ; a debt ceiling can never raise V.
+- **Lemma 2:** the wedge ω = E_t λ' − λ is (1−q)φE[λ^R] > 0 on funds, in [0, ·] at zero debt, 0 in the debt interior, ≤ 0 at a ceiling. So the MCPF is a submartingale (planner: a martingale → converges to the zero-tax fund).
+- **Thm 3 (raiding removes the anchor):** with q < 1, φ > 0 and no ceiling, there is no stationary distribution with finite E[λ]. The zero-tax fund is never a steady state. Proof: stationarity ⇒ ω = 0 a.s. ⇒ martingale ⇒ constant λ ⇒ debt explodes. Discontinuous at (1−q)φ = 0.
+- **Thm 4 (the ceiling as anchor):** with a ceiling D̄, a stationary distribution exists; **wedge accounting** E[|ω|; ceiling] = (1−q)φE[λ^R; funds] + E[ω; zero debt]; the ceiling binds with positive probability (planner: → 0); P(fund) ≤ E[|ω|; ceiling]/((1−q)φ). Dynamic version of "protection and ceilings are complements".
+- **Two-period, now proved:** Λ convex (Lemma A); any mean-preserving spread lowers q* (Prop B); 1 − q* ≈ ε(1+2ε)σ²/φ to leading order (Prop C: the buffer is second order, raiding first order; also proves the ε effect to leading order).
+
+**Numerics (ε = 0.5, r = 5%, G = 0.1 ± 0.04):** planner heads to the 2.8 fund (63% of paths at zero taxes by t = 6,000). With q = 0.9, φ = 0.3, no path ever holds a fund and mean debt rises 0 → 1.58 by t = 6,000. With (1−q)φ = 0.001, almost the same. With ceilings 0.25–1.0, stationary; the ceiling binds 0.3–2.8% of the time; the identity holds to 6 decimals.
+
+**Limits:** β(1+r) = 1 benchmark; dissipated raids (if parties value raids, strategic terms appear); reduced-form q, φ; Thm 3 gives no speed of drift.
+
+**Next:** add disagreement (debt-region wedge, needs MPE strategic terms) or endogenous q (Lindbeck–Weibull); figures of the long-run debt distribution and P(ceiling binds) vs D̄. **Student:** go through the proofs and write them in own words; flag anything unclear.
 
 ## Candidate extensions (2026-10-22, not yet chosen)
 
