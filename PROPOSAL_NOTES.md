@@ -1,6 +1,40 @@
 # ECO731 Research Proposal — Working Notes
 
-_Last updated: 2026-10-27. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; σ-threshold sign fix 2026-10-24; version 4 planned; version 5 (fungibility) checked 2026-10-27; version 6 theorems 2026-11-03)._
+_Last updated: 2026-11-04. Summary of planning sessions with Claude (incl. model versions 1–3 merged from the Claude-app branch; σ-threshold sign fix 2026-10-24; version 5 (fungibility) checked 2026-10-27; version 6 theorems 2026-11-03; novelty check vs Battaglini 2014 and deep-dive agenda 2026-11-04)._
+
+## ⚠️ READ FIRST: novelty risk and the deep-dive agenda (2026-11-04)
+
+### The risk, stated bluntly
+The **core logic of the v6 theorems is not new in kind.** Battaglini (2014, TE), written by the professor's own doctoral advisor, already has:
+- the **same object**: MCPF today vs expected MCPF tomorrow;
+- the **same direction of distortion** (his Prop 4): MCPF_t ≤ E[MCPF_{t+1}], so taxes are pushed into the future and self-insurance is imperfect;
+- **a debt cap** x̄ just below the natural limit, with a stationary distribution living under it (his Prop 5).
+
+A referee, or Prof. Datta, can fairly say: *"this is Battaglini (2014) with a different wedge."* Swapping in a new **source** of the wedge (raiding instead of pandering to swing districts) is **not enough** on its own. The method (submartingale + stationarity, Chamberlain–Wilson 2000) is also standard. **Do not pitch v6 as the headline innovation until the agenda below produces something that has no counterpart in Battaglini 2014/2026.**
+
+### What is genuinely ours so far (defend these)
+1. **The channel:** raiding of a *stock* on turnover, tied to real institutions (CSF, withdrawal rules, NBC). Neither paper has it.
+2. **v4–v5:** protection vs fungibility. Protection works only with tight borrowing room; all-or-nothing saving; gross vs net ceilings. No counterpart in either paper.
+3. **v6 extras:** no finite-mean steady state *without* a cap (Thm 3); the exact wedge-accounting identity; the fund-frequency bound P(fund) ≤ bite/((1−q)φ). **Unverified** that these are not implicit in Battaglini (2014) Prop 5. Check his proof first (TODO 0 below).
+4. **v6 contrast with Battaglini (2026):** instability with *no* time inconsistency (one planner in disguise); there it comes from disagreement and needs none of our shocks.
+
+### Deep-dive agenda: ranked toward results with NO counterpart in Battaglini 2014/2026
+**TODO 0 (do first, small):** read Battaglini (2014) Prop 5 and its proof. Does the debt cap bind with positive probability there? Does he state anything like our identity or Thm 3? Write down exactly what is and isn't new.
+
+1. **⭐ Which *kind* of protection restores the anchor? ("protect the principal, not a share")**. Untested hypothesis, highest priority.
+   - In v6 the raid is *proportional* (φ × fund), so every marginal rupee in the fund is raidable → upward wedge everywhere in the fund region → no anchor.
+   - If instead a successor can take at most a *fixed amount* W (a withdrawal cap, like the min(F, D̄) kink in v5), or only the *returns* and never the principal (a Norway-style spending rule), then beyond some size the marginal rupee is **safe** → wedge = 0 there → the MCPF is a martingale with floor 1 again → the zero-tax fund may be reachable and absorbing.
+   - **Conjectured theorem:** proportional raids destroy the anchor for any φ > 0; capped or returns-only raids preserve it (with positive probability, or always). This would give a sharp **institutional design result**: India's CSF rules (withdrawals capped as a *share* of the corpus) vs Norway (spend only the expected return). Nothing like it is in Battaglini 2014/2026.
+   - Plan: modify `code/raid_infinite.py` (raid = min(φ·F, W), and returns-only), simulate, then try to prove using the Lemma 2 wedge table (the wedge is zero beyond the cap).
+2. **Fungibility in the infinite horizon: an irrelevance theorem for ring-fencing.** Two state variables (a protected fund F, gross debt B) plus a withdrawal rule. Conjecture: with unconstrained borrowing, ring-fencing is irrelevant (an MM/Ricardian-style irrelevance); it matters exactly when a borrowing constraint binds. The exact conditions = a theorem about *institutions*, not wedges. Ties to the RBI open question (do CSF-paid redemptions free NBC room?).
+3. **Raiding + disagreement together: two wedges in different regions.** Raiding pushes up in the *fund* region, disagreement (A&T, d) in the *debt* region. Characterise the steady state with a ceiling, and which reform (lower φ vs tighter D̄) cuts volatility or raises welfare more. With disagreement there is time inconsistency, so a ceiling *can* raise welfare (unlike Prop 1(d)). Links to the 2026 cycles/chaos: chaos plus shocks?
+4. **Long run discontinuous, welfare continuous?** Thm 3 makes the long-run distribution jump at (1−q)φ = 0. Is the welfare loss continuous, and of what order in φ? A sharp quantitative statement ("dramatic long-run consequences, small or large welfare cost") would be new and would answer the "so what?" question.
+5. **Endogenous raiding / fiscal constitution.** Let the successor choose how much to raid at a cost that rises with legal protection, and let parties choose (φ, D̄) behind a veil of ignorance. Analogue of Laibson's (1997) "golden eggs": illiquid assets are a commitment device that easy credit undermines. A public-finance version with an optimal fund design is novel.
+6. **Empirical hook (later):** predictions that the ceiling binds regularly, and that the 2020–21 CSF withdrawal relaxation (a rise in φ) lowered contributions. Data: RBI *State Finances*, NBC utilisation, CSF balances.
+
+**Lower priority / not innovative enough on their own:** endogenous q via Battaglini (2014) (no incumbent there; the professor's hint is to keep q exogenous as in 2026); speed of drift in Thm 3 (technical).
+
+**Rule for future sessions:** before calling any result "new", state explicitly what Battaglini (2014), Battaglini (2026) and Battaglini & Coate (2008) already do, and how ours differs in *conclusion*, not just in mechanism.
 
 ## Assignment (from FCH + instructor email, both PDFs in this repo)
 
