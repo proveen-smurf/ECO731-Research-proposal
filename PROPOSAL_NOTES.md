@@ -288,6 +288,25 @@ Full statements, proofs and numerical checks: **`PROOFS_v6.md`**; solver: `code/
 
 **Next:** add disagreement (debt-region wedge, needs MPE strategic terms) or endogenous q (Lindbeck–Weibull); figures of the long-run debt distribution and P(ceiling binds) vs D̄. **Student:** go through the proofs and write them in own words; flag anything unclear.
 
+## Reading of the professor's papers: Battaglini (2014) and (2026) (2026-11-04)
+
+**Context:** the professor is **Neelanjan Datta** (email signs "nd"; thanked as research assistant in Battaglini 2026). Battaglini was his doctoral advisor. He pointed out that Battaglini (2026) uses an **exogenous** turnover probability.
+
+**Battaglini (2026, TE 21: 241–280), "Chaos and unpredictability with time inconsistent policy makers":**
+- Two parties, each in power with probability **1/2 every period, by chance** (exogenous, i.i.d.). Footnote 15: alternation matters only because it creates time inconsistency.
+- Disagreement parameter α (α = 1: none). Planner: unique equilibrium, monotone convergence. Political (α < 1): Markov equilibria with cycles and chaos exist; their size shrinks as α → 1.
+- **For us:** exogenous q is standard → keep q exogenous (our q generalises 1/2); endogenous q (Options A/B) is not needed for a serious model. Our v6 has *no* time inconsistency (Prop 1, one planner in disguise) yet still no steady state: the instability comes from shocks + raiding, not disagreement. That's a clean contrast. The v3 cycling (with disagreement) is consistent with his results. Our d ≈ his 1 − α.
+
+**Battaglini (2014, TE 9: 515–554), "A dynamic theory of electoral competition":**
+- Probabilistic voting (Lindbeck–Weibull style, dynamic); both parties choose platforms each period and converge. **No incumbent survives**, so "successor raids the fund" doesn't map naturally → a poor route to endogenous q for our mechanism.
+- **Prop 4:** in the political equilibrium, MCPF_t ≤ E[MCPF_{t+1}] (taxes shifted to the future; source = pandering to changing swing districts). **Same wedge direction as our v6 Lemma 2**, different source.
+- Debt restricted to [x̲, x̄] with x̄ just below max R/ρ "for technical reasons". **Prop 5:** nondegenerate stationary distribution on [x_m, x̄] (for m < n); the distortion is volatility, not necessarily more debt.
+- **Positioning:** our Thm 3/4 suggest why such a bound is needed (a submartingale MCPF has no finite-mean steady state without a cap, and the cap must bind). Contribution = the raiding source of the wedge + the no-cap result + the exact accounting identity + the fund bound + reading the cap as a fiscal rule (FRBM/NBC). **TODO:** check how his Prop 5 proof uses x̄ before claiming this.
+
+**Follow-up reading (from the 2026 references; not yet checked):** Battaglini (2011, *Annual Review of Economics*) survey, read first; Cao & Werning (2018a) "Dynamic savings choices with disagreements"; Laibson (1997) "Golden eggs" (illiquid assets as commitment, undermined by credit = household analogue of our protection + ceiling complementarity); Bewley (1986) (precautionary saving with βR = 1); Yared (2010) (rent-seeking politicians, for Option B); Klein, Krusell & Ríos-Rull (2008).
+
+**To fix:** the email draft and meeting notes (Q3) still suggest endogenous q via Battaglini 2014. Better: keep q exogenous as in Battaglini (2026), and ask whether adding disagreement to v6 is the right next step. Address the email to "Professor Datta".
+
 ## Candidate extensions (2026-10-22, not yet chosen)
 
 1. **Spending shocks (BC 2008 style)**: needed to fix the β(1+r) > 1 logic issue. Expected: φ cuts precautionary saving → taxes more volatile.
