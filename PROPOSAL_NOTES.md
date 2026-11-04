@@ -295,6 +295,10 @@ Full statements, proofs and numerical checks: **`PROOFS_v6.md`**; solver: `code/
 3. **Fiscal rule vs fund protection (FRBM Act, Lecture 19)**: debt ceiling vs low φ. Expected: ceiling stops borrowing but doesn't create saving; protection does the opposite → complements. India angle. Made precise in version 5.
 4. **Choosing φ (who protects the fund?)**: constitutional stage. Expected (to derive): behind a veil of ignorance both parties want φ = 0, but an incumbent may not adopt it alone.
 5. **Endogenous q (probabilistic voting, Lecture 20)**: saving raises taxes today → lowers re-election chance → less saving. Harder.
+   - **Two options (worked out 2026-11-04; asked the professor which to pursue):**
+     - **A, welfare-maximising governments:** winning matters only because losing means the fund is raided. Extra Euler term ∝ q′(τ)·dτ/da·[V^S − V^L], which is zero at a = 0 (nothing to raid) → the v4 threshold for *starting* to save is unchanged, the amount saved falls; debt is unaffected (V^S = V^L for b ≥ 0). In v6 it adds a further upward wedge on funds → results strengthen; still one planner (with a choice-dependent levy), so the proofs mostly carry over (concavity may fail).
+     - **B, office-motivated politicians:** borrowing before elections wins votes → political budget cycles (Khemani 2004), debt bias even without disagreement, the ceiling binds more often. Prop 1 fails (strategic game; Battaglini 2014 machinery; Lindbeck–Weibull convergence issue). Large.
+     - Recommendation: A first (quick, keeps the proofs), B as the bigger next step.
 
 6. **Centre alignment (from the email, 2026-10-11)**: an aligned state has (a) higher q (more saving) and (b) a bailout expectation, i.e. part of period-2 debt is covered by the Centre, which lowers the effective cost of borrowing (less saving / more debt). In the model this is q(aligned) > q(not) plus a bailout share θ on debt. The prediction comes from comparing the two effects on the threshold.
 
